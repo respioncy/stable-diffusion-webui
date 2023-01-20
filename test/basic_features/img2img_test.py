@@ -16,7 +16,7 @@ class TestImg2ImgWorking(unittest.TestCase):
             "inpainting_fill": 0,
             "inpaint_full_res": False,
             "inpaint_full_res_padding": 0,
-            "inpainting_mask_invert": 0,
+            "inpainting_mask_invert": False,
             "prompt": "example prompt",
             "styles": [],
             "seed": -1,
@@ -50,9 +50,16 @@ class TestImg2ImgWorking(unittest.TestCase):
         self.simple_img2img["mask"] = encode_pil_to_base64(Image.open(r"test/test_files/mask_basic.png"))
         self.assertEqual(requests.post(self.url_img2img, json=self.simple_img2img).status_code, 200)
 
+    def test_inpainting_with_inverted_masked_performed(self):
+        self.simple_img2img["mask"] = encode_pil_to_base64(Image.open(r"test/test_files/mask_basic.png"))
+        self.simple_img2img["inpainting_mask_invert"] = True
+        self.assertEqual(requests.post(self.url_img2img, json=self.simple_img2img).status_code, 200)
 
-class TestImg2ImgCorrectness(unittest.TestCase):
-    pass
+    def test_img2img_sd_upscale_performed(self):
+        self.simple_img2img["script_name"] = "sd upscale"
+        self.simple_img2img["script_args"] = ["", 8, "Lanczos", 2.0]
+
+        self.assertEqual(requests.post(self.url_img2img, json=self.simple_img2img).status_code, 200)
 
 
 if __name__ == "__main__":

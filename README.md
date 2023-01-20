@@ -1,9 +1,7 @@
 # Stable Diffusion web UI
 A browser interface based on Gradio library for Stable Diffusion.
 
-![](txt2img_Screenshot.png)
-
-Check the [custom scripts](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Custom-Scripts) wiki page for extra scripts developed by users.
+![](screenshot.png)
 
 ## Features
 [Detailed feature showcase with images](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features):
@@ -70,7 +68,7 @@ Check the [custom scripts](https://github.com/AUTOMATIC1111/stable-diffusion-web
      - separate prompts using uppercase `AND`
      - also supports weights for prompts: `a cat :1.2 AND a dog AND a penguin :2.2`
 - No token limit for prompts (original stable diffusion lets you use up to 75 tokens)
-- DeepDanbooru integration, creates danbooru style tags for anime prompts (add --deepdanbooru to commandline args)
+- DeepDanbooru integration, creates danbooru style tags for anime prompts
 - [xformers](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers), major speed increase for select cards: (add --xformers to commandline args)
 - via extension: [History tab](https://github.com/yfszzx/stable-diffusion-webui-images-browser): view, direct and delete images conveniently within the UI
 - Generate forever option
@@ -82,28 +80,9 @@ Check the [custom scripts](https://github.com/AUTOMATIC1111/stable-diffusion-web
 - Use VAEs
 - Estimated completion time in progress bar
 - API
-- Support for dedicated [inpainting model](https://github.com/runwayml/stable-diffusion#inpainting-with-stable-diffusion) by RunwayML. 
-- via extension: [Aesthetic Gradients](https://github.com/AUTOMATIC1111/stable-diffusion-webui-aesthetic-gradients), a way to generate images with a specific aesthetic by using clip images embds (implementation of [https://github.com/vicgalle/stable-diffusion-aesthetic-gradients](https://github.com/vicgalle/stable-diffusion-aesthetic-gradients))
-
-## Where are Aesthetic Gradients?!?!
-Aesthetic Gradients are now an extension. You can install it using git:
-
-```commandline
-git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-aesthetic-gradients extensions/aesthetic-gradients
-```
-
-After running this command, make sure that you have `aesthetic-gradients` dir in webui's `extensions` directory and restart
-the UI. The interface for Aesthetic Gradients should appear exactly the same as it was.
-
-## Where is History/Image browser?!?!
-Image browser is now an extension. You can install it using git:
-
-```commandline
-git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser extensions/images-browser
-```
-
-After running this command, make sure that you have `images-browser` dir in webui's `extensions` directory and restart
-the UI. The interface for Image browser should appear exactly the same as it was.
+- Support for dedicated [inpainting model](https://github.com/runwayml/stable-diffusion#inpainting-with-stable-diffusion) by RunwayML.
+- via extension: [Aesthetic Gradients](https://github.com/AUTOMATIC1111/stable-diffusion-webui-aesthetic-gradients), a way to generate images with a specific aesthetic by using clip images embeds (implementation of [https://github.com/vicgalle/stable-diffusion-aesthetic-gradients](https://github.com/vicgalle/stable-diffusion-aesthetic-gradients))
+- [Stable Diffusion 2.0](https://github.com/Stability-AI/stablediffusion) support - see [wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#stable-diffusion-20) for instructions
 
 ## Installation and Running
 Make sure the required [dependencies](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Dependencies) are met and follow the instructions available for both [NVidia](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs) (recommended) and [AMD](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-AMD-GPUs) GPUs.
@@ -116,9 +95,8 @@ Alternatively, use online services (like Google Colab):
 1. Install [Python 3.10.6](https://www.python.org/downloads/windows/), checking "Add Python to PATH"
 2. Install [git](https://git-scm.com/download/win).
 3. Download the stable-diffusion-webui repository, for example by running `git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git`.
-4. Place `model.ckpt` in the `models` directory (see [dependencies](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Dependencies) for where to get it).
-5. _*(Optional)*_ Place `GFPGANv1.4.pth` in the base directory, alongside `webui.py` (see [dependencies](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Dependencies) for where to get it).
-6. Run `webui-user.bat` from Windows Explorer as normal, non-administrator, user.
+4. Place stable diffusion checkpoint (`model.ckpt`) in the `models/Stable-diffusion` directory (see [dependencies](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Dependencies) for where to get it).
+5. Run `webui-user.bat` from Windows Explorer as normal, non-administrator, user.
 
 ### Automatic Installation on Linux
 1. Install the dependencies:
@@ -146,6 +124,8 @@ Here's how to add code to this repo: [Contributing](https://github.com/AUTOMATIC
 The documentation was moved from this README over to the project's [wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki).
 
 ## Credits
+Licenses for borrowed code can be found in `Settings -> Licenses` screen, and also in `html/licenses.html` file.
+
 - Stable Diffusion - https://github.com/CompVis/stable-diffusion, https://github.com/CompVis/taming-transformers
 - k-diffusion - https://github.com/crowsonkb/k-diffusion.git
 - GFPGAN - https://github.com/TencentARC/GFPGAN.git
@@ -154,9 +134,11 @@ The documentation was moved from this README over to the project's [wiki](https:
 - SwinIR - https://github.com/JingyunLiang/SwinIR
 - Swin2SR - https://github.com/mv-lab/swin2sr
 - LDSR - https://github.com/Hafiidz/latent-diffusion
+- MiDaS - https://github.com/isl-org/MiDaS
 - Ideas for optimizations - https://github.com/basujindal/stable-diffusion
 - Cross Attention layer optimization - Doggettx - https://github.com/Doggettx/stable-diffusion, original idea for prompt editing.
 - Cross Attention layer optimization - InvokeAI, lstein - https://github.com/invoke-ai/InvokeAI (originally http://github.com/lstein/stable-diffusion)
+- Sub-quadratic Cross Attention layer optimization - Alex Birch (https://github.com/Birch-san/diffusers/pull/1), Amin Rezaei (https://github.com/AminRezaei0x443/memory-efficient-attention)
 - Textual Inversion - Rinon Gal - https://github.com/rinongal/textual_inversion (we're not using his code, but we are using his ideas).
 - Idea for SD upscale - https://github.com/jquesnelle/txt2imghd
 - Noise generation for outpainting mk2 - https://github.com/parlance-zz/g-diffuser-bot
